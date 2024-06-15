@@ -1,8 +1,5 @@
 # Tasks
 
-## Basic Detials
-For step Task Application
-
 ## Follow the installation steps
 
 1. Clone the repository:
@@ -11,7 +8,7 @@ For step Task Application
 git clone https://github.com/pankajsajekar/Tasks-DRF-Angular.git
 ```
 
-## A. SetUp Backend (DRF)
+## A. Setup Backend (DRF)
 1. change dir
 ```
 cd Backend
@@ -48,7 +45,7 @@ Password: 321
 ```
 
 
-## B. Setup FrontEnd
+## B. Setup FrontEnd (Angular)
 
 1. change dir
 ```
@@ -59,9 +56,17 @@ cd Frontend
 ```
 npm install
 ```
-bootstrap not install then Enter this command `npm install bootstrap --save`
+If Bootstrap is not install then Enter this command `npm install bootstrap --save`
 
 3. Run Angular Server
 ```
 ng serve
 ```
+
+
+## Basic Detials
+I create Task Management (CRUD Functionality)
+we can do add new task, delete task, update task.
+See all task
+I done authentication part in DRF but In angular is incomplete (remaining only guard, interceptor i will do after few hours)
+I used Bootstrap for good looking
