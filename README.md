@@ -52,9 +52,10 @@ Password: 321
 cd Frontend
 ```
 
-2. Install NPM
+2. Install NPM, toastr
 ```
 npm install
+npm install ngx-toastr --save
 ```
 If Bootstrap is not install then Enter this command `npm install bootstrap --save`
 
@@ -64,9 +65,9 @@ ng serve
 ```
 
 
-## Basic Detials
-I create Task Management (CRUD Functionality)
-we can do add new task, delete task, update task.
-See all task
-I done authentication part in DRF but In angular is incomplete (remaining only guard, interceptor i will do after few hours)
-I used Bootstrap for good looking
+### Basic Detials
+I create Task Management (CRUD Functionality) <br>
+we can do add new task, delete task, update task. <br>
+See all task <br>
+I done authentication part in DRF but In angular is incomplete (remaining only guard, interceptor i will do after few hours) <br>
+I used Bootstrap for good looking <br>

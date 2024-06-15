@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { CommonService } from '../../_services/common.service';
 import { NgFor, SlicePipe } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-dashboard',
@@ -30,7 +31,8 @@ export class DashboardComponent  implements OnInit {
   ]
 
 constructor(private CommonService: CommonService,
-   private formBuilder:FormBuilder ){
+   private formBuilder:FormBuilder,
+  private toastrService: ToastrService ){
 }
 
   ngOnInit():void{
@@ -54,7 +56,8 @@ constructor(private CommonService: CommonService,
   AddTask(){
     console.log(this.TaskForm.value)
     if (this.TaskForm.invalid){
-      alert("Please Fill all required Fields");
+      // alert("Please Fill all required Fields");
+      this.toastrService.info("Please Fillup all Fields");
       return 
     }
     else{
@@ -63,6 +66,7 @@ constructor(private CommonService: CommonService,
         next: (res:any)=>{
           if(res.code == 201){}
           this.LoadData();
+          this.toastrService.success("New Task Added Successfully");
           this.closeAddTaskModal.nativeElement.click();
           this.TaskForm.reset();
         },
@@ -86,7 +90,8 @@ constructor(private CommonService: CommonService,
   UpdateTask(){
     console.log(this.EditTaskForm.value)
     if (this.EditTaskForm.invalid){
-      alert("Please Fill all required Fields");
+      // alert("Please Fill all required Fields");
+      this.toastrService.info("Please Fillup all Fields");
       return 
     }
       else{
@@ -95,6 +100,7 @@ constructor(private CommonService: CommonService,
         next: (res:any) => {
           console.log(res)
           this.LoadData();
+          this.toastrService.success("Task Update Successfully");
           this.closeEditTaskModal.nativeElement.click();
         },
         error: (err:any) =>{
@@ -107,6 +113,7 @@ constructor(private CommonService: CommonService,
     this.CommonService.DeleteMethod('/task/'+item.id+'/').subscribe({
       next: (res:any) => {
         console.log(res)
+        this.toastrService.error("Task Delete Successfully");
         this.LoadData();
       },
       error: (err:any) =>{
