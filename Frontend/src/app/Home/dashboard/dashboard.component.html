@@ -1,0 +1,99 @@
+<div class="container">
+    <h4 class="mt-5 text-center">Task Sheet!</h4>
+    <div class="m-2 d-flex justify-content-end"><button class="btn btn-primary btn-sm" data-bs-toggle="modal"
+            data-bs-target="#addTaskModal">New Task</button></div>
+
+    <!-- Add Task Modal -->
+    <div class="modal fade" id="addTaskModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="addTaskModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addTaskModalLabel">Add Task</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form [formGroup]="TaskForm" (ngSubmit)="AddTask()">
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label class="form-label">Title</label>
+                            <input type="text" class="form-control" formControlName="title">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Descriptions</label>
+                            <textarea rows="3" class="form-control" formControlName="description"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Status</label>
+                            <select class="form-select" aria-label="Default select example" formControlName="status">
+                                <option *ngFor="let item of taskStatus" [value]="item.value">{{item.viewValue}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button #closeAddTaskModal type="button" class="btn btn-secondary d-none" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Task Modal -->
+    <div class="modal fade" id="editTaskModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="editTaskModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editTaskModalLabel">Edit Task</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form [formGroup]="EditTaskForm" (ngSubmit)="UpdateTask()">
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label class="form-label">Title</label>
+                            <input type="text" class="form-control" formControlName="title">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Descriptions</label>
+                            <textarea rows="3" class="form-control" formControlName="description"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Status</label>
+                            <select class="form-select" aria-label="Default select example" formControlName="status">
+                                <option *ngFor="let item of taskStatus" [value]="item.value">{{item.viewValue}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary"> Submit</button>
+                        <button #closeEditTaskModal type="button" class="btn btn-secondary d-none" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>#</th>
+                <th>Task</th>
+                <th>Description</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+            <tr *ngFor="let item of TaskList; let i = index">
+                <td>{{i + 1}}</td>
+                <td>{{item.title}}</td>
+                <td>{{item.description | slice: 0:60}}</td>
+                <td>{{item.status}}</td>
+                <td>
+                    <button class="btn btn-info btn-sm mx-1" (click)="EditTask(item)" data-bs-toggle="modal" data-bs-target="#editTaskModal">Edit</button>
+                    <button class="btn btn-danger btn-sm mx-1" (click)="DelTask(item)">Del</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
