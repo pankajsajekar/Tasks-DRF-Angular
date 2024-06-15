@@ -28,4 +28,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ### Need To install
 `npm install bootstrap --save`
-`npm install ngx-toastr --save`
+
+
+###
+`npm install`
