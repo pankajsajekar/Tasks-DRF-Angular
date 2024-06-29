@@ -3,6 +3,9 @@ import { CommonService } from '../../_services/common.service';
 import { NgFor, SlicePipe } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { routes } from '../../app.routes';
+import { Router } from '@angular/router';
+import { AccountService } from '../../_services/account.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -31,7 +34,9 @@ export class DashboardComponent  implements OnInit {
   ]
 
 constructor(private CommonService: CommonService,
+  private accountService: AccountService,
    private formBuilder:FormBuilder,
+   private router: Router,
   private toastrService: ToastrService ){
 }
 
@@ -138,5 +143,12 @@ constructor(private CommonService: CommonService,
         console.warn(error)
       }});
   }
+
+
+  logout(){
+    this.accountService.logout()
+    this.router.navigate(['/account/login'])
+  }
+
 }
 

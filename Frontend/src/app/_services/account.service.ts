@@ -10,8 +10,23 @@ export class AccountService {
 
   constructor(private http: HttpClient) { }
 
-  login(username: string, password: string) {
-    return this.http.post<any>(this.BaseURL+ '/account/login', { username , password })
+  login(body: any) {
+    return this.http.post<any>(this.BaseURL+ '/account/login', body ).pipe(
+    )
+  }
+
+  register(body: any) {
+    return this.http.post<any>(this.BaseURL+ '/account/register', body )
+  }
+
+  logout(){
+    localStorage.clear()
+  }
+
+
+  isLoggedIn(): boolean {
+      const user = localStorage.getItem('token');
+      return !!user; // Convert to boolean
   }
 
 }
